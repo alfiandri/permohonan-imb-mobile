@@ -86,7 +86,6 @@ export const HandleSuccessResponse = res => {
 export const HandleErrorResponse = err => {
   return new Promise(async (resolve, reject) => {
     const response = err?.response;
-    console.log({response, err});
     switch (response?.status) {
       case 300:
         resolve(

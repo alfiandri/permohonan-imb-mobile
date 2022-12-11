@@ -6,10 +6,9 @@
 import deviceInfoModule from 'react-native-device-info';
 
 // config endpoint
-// local docker && production google cloud run
-// const uri = 'https://smartaplikasi.com/api/';
-const uri = 'http://127.0.0.1:8002/api/';
-console.log(uri);
+const uri = 'https://melapor.sibolgakota.go.id/api/';
+// const uri = 'http://127.0.0.1:8002/api/';
+// console.log(uri);
 // config store
 const keys = {
   authToken: '@authToken',

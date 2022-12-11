@@ -1637,6 +1637,79 @@
     "color" "^4.2.3"
     "warn-once" "^0.1.0"
 
+"@rpldy/abort@^1.3.0":
+  "integrity" "sha512-A+JYhjTXva6YoRlVSWr0yKyf3JBPpuoAKYaMuW/iuL8jERXIHxnIKHtKoFKOWoxldB0VL+DS5NAEYWX/nkYSbg=="
+  "resolved" "https://registry.npmjs.org/@rpldy/abort/-/abort-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "@rpldy/raw-uploader" "^1.3.0"
+    "@rpldy/shared" "^1.3.0"
+    "@rpldy/simple-state" "^1.3.0"
+
+"@rpldy/life-events@^1.3.0":
+  "integrity" "sha512-m4UA1UoNpuf19Ro2Vla44OuHEGptwMTUZ03z/lKH4rQv0SM172nCHqTnMhD4nRWZsQHxBZntRGa95V2SHDjJyg=="
+  "resolved" "https://registry.npmjs.org/@rpldy/life-events/-/life-events-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "@rpldy/shared" "^1.3.0"
+
+"@rpldy/native-uploady@^1.3.0":
+  "integrity" "sha512-Cb/XPmtLxASY9dZqZn7L5FAra6zSssR0LHWwty/Em6xWCeu+19rKUCCga7Y/JM92FqrWgdTKuuclJT619iv7yw=="
+  "resolved" "https://registry.npmjs.org/@rpldy/native-uploady/-/native-uploady-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "@rpldy/shared-ui" "^1.3.0"
+
+"@rpldy/raw-uploader@^1.3.0":
+  "integrity" "sha512-ED6cELZ/cuZTEAXBMVkjJkZD+PhzIVaXRIjfjC2tA12Tuw10JtT1OQU6RsZKQNPd3EmyZz/XmYVO7BbNigpkwA=="
+  "resolved" "https://registry.npmjs.org/@rpldy/raw-uploader/-/raw-uploader-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "@rpldy/life-events" "^1.3.0"
+    "@rpldy/shared" "^1.3.0"
+
+"@rpldy/sender@^1.3.0":
+  "integrity" "sha512-GjHcU3hCyJMRS9wYJkcXrVHdV3wqrGwq/tewl8fl7CzrzMUrk7oJgK8aoAGy8fAzdjrwfmorL+dFIDXXLY1LHw=="
+  "resolved" "https://registry.npmjs.org/@rpldy/sender/-/sender-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "@rpldy/shared" "^1.3.0"
+
+"@rpldy/shared-ui@^1.3.0":
+  "integrity" "sha512-z/N2PZlfI/K7Zh2rtJawK0tPaRNGqRgbPbDHDvrsz01OcBQZjUcwY1itZdp0wz9psVRV5MzjR73roSsOsheD+A=="
+  "resolved" "https://registry.npmjs.org/@rpldy/shared-ui/-/shared-ui-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "@rpldy/shared" "^1.3.0"
+    "@rpldy/uploader" "^1.3.0"
+
+"@rpldy/shared@^1.3.0":
+  "integrity" "sha512-d0Prng9JMino9VjVrSvRph0DdanTSv6+DYnupk1ipvmX5BBAz9LqCKn0XsdMfo7OQfK9/InApWcP9/yvR6qx8A=="
+  "resolved" "https://registry.npmjs.org/@rpldy/shared/-/shared-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "invariant" "^2.2.4"
+    "just-throttle" "^1.1.0"
+
+"@rpldy/simple-state@^1.3.0":
+  "integrity" "sha512-71cjumPT18RG4XwbwNR61FxTE61v50wRNar5XEDfxI0Og2/3HFJqFlXZHIAzLphyB6/LT3kzwShcw/ka4LqXJQ=="
+  "resolved" "https://registry.npmjs.org/@rpldy/simple-state/-/simple-state-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "@rpldy/shared" "^1.3.0"
+
+"@rpldy/uploader@^1.3.0":
+  "integrity" "sha512-YR8fwLmXTu0jFog5/tnn4qKo/BfonDcvojwsuEx/0S0vAT0+ctBzRqeDLkVTQ3QY0a6WAltoYtxDCLjgtEpsCw=="
+  "resolved" "https://registry.npmjs.org/@rpldy/uploader/-/uploader-1.3.0.tgz"
+  "version" "1.3.0"
+  dependencies:
+    "@rpldy/abort" "^1.3.0"
+    "@rpldy/life-events" "^1.3.0"
+    "@rpldy/raw-uploader" "^1.3.0"
+    "@rpldy/sender" "^1.3.0"
+    "@rpldy/shared" "^1.3.0"
+    "@rpldy/simple-state" "^1.3.0"
+
 "@sideway/address@^4.1.3":
   "integrity" "sha512-7vwq+rOHVWjyXxVlR76Agnvhy8I9rpzjosTESvmhNeXOXdZZB15Fl+TI9x1SiHZH5Jv2wTGduSxFDIaq0m3DUw=="
   "resolved" "https://registry.npmjs.org/@sideway/address/-/address-4.1.4.tgz"
@@ -4862,6 +4935,11 @@
     "array-includes" "^3.1.5"
     "object.assign" "^4.1.3"
 
+"just-throttle@^1.1.0":
+  "integrity" "sha512-iePC/13XYX1Tyn9C6jY+DG3UEejkDvrKsw5xxgGhtGUwYWmoJm4CoKexscBKELOu3FTyCDzjr21ZJ67AXnz+bg=="
+  "resolved" "https://registry.npmjs.org/just-throttle/-/just-throttle-1.1.0.tgz"
+  "version" "1.1.0"
+
 "kind-of@^3.0.2":
   "integrity" "sha512-NOW9QQXMoZGg/oqnVNoNTTIFEIid1627WCffUBJEdMxYApq7mNE7CpzucIPc+ZQg25Phej7IJSmX3hO+oblOtQ=="
   "resolved" "https://registry.npmjs.org/kind-of/-/kind-of-3.2.2.tgz"
@@ -6054,6 +6132,14 @@
     "shell-quote" "^1.6.1"
     "ws" "^7"
 
+"react-dom@>=16.8":
+  "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
+  "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
+  "version" "18.2.0"
+  dependencies:
+    "loose-envify" "^1.1.0"
+    "scheduler" "^0.23.0"
+
 "react-freeze@^1.0.0":
   "integrity" "sha512-ZnXwLQnGzrDpHBHiC56TXFXvmolPeMjTn1UOm610M4EXGzbEDR7oOIyS2ZiItgbs6eZc4oU/a0hpk8PrcKvv5g=="
   "resolved" "https://registry.npmjs.org/react-freeze/-/react-freeze-1.0.3.tgz"
@@ -6106,6 +6192,13 @@
   "resolved" "https://registry.npmjs.org/react-native-device-info/-/react-native-device-info-10.3.0.tgz"
   "version" "10.3.0"
 
+"react-native-document-picker@^8.1.3":
+  "integrity" "sha512-lC+SZnzqIEE30x2CSHeZT+f7FzhQOTJprCNMRPpFVl4mLV9dDCJ/wZAmMByJFT79oQMPrzjlhhJlmjm+sVRUWQ=="
+  "resolved" "https://registry.npmjs.org/react-native-document-picker/-/react-native-document-picker-8.1.3.tgz"
+  "version" "8.1.3"
+  dependencies:
+    "invariant" "^2.2.4"
+
 "react-native-dropdown-picker@^5.4.3":
   "integrity" "sha512-cwZzFcpyx/Stw3lZH2bvXxcsgwkR8c3rRZtOnlvyuN5pAplzA/9AiAxYlnJuspP9VvyU1XMePKOpgcHce6iyhA=="
   "resolved" "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.3.tgz"
@@ -6134,6 +6227,11 @@
   "integrity" "sha512-oOanj84fJEXUg9FoEAQomA8ISG+DVIrTZ3qF7m69VQUJyOGYyDZmPqKcjvRku4KXlEH6hWO9i4ACLzNBh8gC0A=="
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz"
   "version" "0.70.3"
+
+"react-native-image-base64@^0.1.4":
+  "integrity" "sha512-WLdzwHdXFRLS9VStG1CG46+t+fcInjVWxKd1+AATElBhaAS3zwDHz7mYIZS1OX4VMuNClwl5G8dowuqUJ9aMGQ=="
+  "resolved" "https://registry.npmjs.org/react-native-image-base64/-/react-native-image-base64-0.1.4.tgz"
+  "version" "0.1.4"
 
 "react-native-image-crop-picker@^0.38.1":
   "integrity" "sha512-cF5UQnWplzHCeiCO+aiGS/0VomWaLmFf3nSsgTMPfY+8+99h8N/eHQvVdSF7RsGw50B8394wGeGyqHjjp8YRWw=="
@@ -6189,6 +6287,11 @@
   dependencies:
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
+
+"react-native-simple-radio-button@^2.7.4":
+  "integrity" "sha512-QOZNmJUn0ViBGU+at7wAG/uGzd5PfXi0kMHr9lfTCLXknW/f9f2fOVjxjdHvOCdf/zA/eMJBjGjtusSDzQf1+w=="
+  "resolved" "https://registry.npmjs.org/react-native-simple-radio-button/-/react-native-simple-radio-button-2.7.4.tgz"
+  "version" "2.7.4"
 
 "react-native-skeleton-placeholder@^5.2.4":
   "integrity" "sha512-OZntVq1hU1UX33FltxK2ezT2v9vHIhV8YnEbnMWUCvxT0N9OsgD1qxiHm6qb9YRJVgq2o5z3S7dNPsPnDF/jNg=="
@@ -6280,7 +6383,7 @@
     "react-shallow-renderer" "^16.15.0"
     "scheduler" "^0.22.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.1.0", "react@>=0.14.8", "react@>=16", "react@>=16.0", "react@>=16.13.1", "react@>=16.3.0", "react@>=17.0.0", "react@18.1.0":
+"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.1.0", "react@^18.2.0", "react@>=0.14.8", "react@>=16", "react@>=16.0", "react@>=16.13.1", "react@>=16.3.0", "react@>=16.8", "react@>=17.0.0", "react@18.1.0":
   "integrity" "sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.1.0.tgz"
   "version" "18.1.0"
@@ -6608,6 +6711,13 @@
   "integrity" "sha512-6QAm1BgQI88NPYymgGQLCZgvep4FyePDWFpXVK+zNSUgHwlqpJy8VEh8Et0KxTACS4VWwMousBElAZOH9nkkoQ=="
   "resolved" "https://registry.npmjs.org/scheduler/-/scheduler-0.22.0.tgz"
   "version" "0.22.0"
+  dependencies:
+    "loose-envify" "^1.1.0"
+
+"scheduler@^0.23.0":
+  "integrity" "sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw=="
+  "resolved" "https://registry.npmjs.org/scheduler/-/scheduler-0.23.0.tgz"
+  "version" "0.23.0"
   dependencies:
     "loose-envify" "^1.1.0"
 

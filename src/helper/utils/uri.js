@@ -13,8 +13,6 @@ export const createAxios = async () => {
   const mobile_version = deviceInfoModule.getVersion();
   const mobile_hardware = await deviceInfoModule.getHardware();
 
-  console.log(ENDPOINT);
-
   const globalConfig = {
     baseURL: ENDPOINT,
     params: {

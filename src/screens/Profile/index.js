@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {isEmpty} from 'lodash';
-import React, {useRef} from 'react';
+import { isEmpty } from 'lodash';
+import React, { useRef } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -9,18 +9,18 @@ import {
   RefreshControl,
   ScrollView,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import {
   Button,
   Navbar,
   StatusBar,
   Text,
-  ViewError,
+  ViewError
 } from '../../global/components';
-import _, {COLORS} from '../../global/styles';
-import {useProfile} from '../../helper/hooks/profile';
-import {EditPhoto, ProfileSettings} from './components';
+import _, { COLORS } from '../../global/styles';
+import { useProfile } from '../../helper/hooks/profile';
+import { EditPhoto, ProfileSettings } from './components';
 
 const FETCH = axios.CancelToken.source();
 
@@ -88,7 +88,7 @@ export default ({navigation, route}) => {
                     <Image
                       source={
                         isEmpty(photo)
-                          ? require('../../assets/images/asli.png')
+                          ? require('../../assets/images/no-profile.png')
                           : {uri: photo}
                       }
                       style={[_.circle(60)]}

@@ -28,8 +28,6 @@ export const useHome = () => {
       try {
         FETCH?.cancel();
       } catch (fetch_error) {}
-
-      // console.log(3232);
       const res = await GET({
         url: 'data/home',
         any: {CancelToken: FETCH.token},
@@ -40,8 +38,6 @@ export const useHome = () => {
       if (result.result == 'success') {
         let profile = result?.data.profile;
         profile = profile?.data;
-
-        console.log(profile);
 
         if (!isEmpty(profile)) {
           // dispatch profile
@@ -94,7 +90,6 @@ export const useHome = () => {
     if (isEmpty(token)) {
       logOut();
     }
-    console.log("reduxDataHome", reduxDataHome)
     if (!isEmpty(reduxDataHome)) {
       setData(last => (last = reduxDataHome));
     } else {

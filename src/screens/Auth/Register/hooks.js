@@ -8,10 +8,19 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const login = async ({email = '', password = ''}) => {
+  const register = async ({
+    nama = '',
+    email = '',
+    nik = '',
+    nohp = '',
+    password = '',
+  }) => {
     setLoading(true);
     try {
-      const res = await POST({url: 'auth/login', body: {email, password}});
+      const res = await POST({
+        url: 'auth/register',
+        body: {nama, email, nik, no_hp: nohp, password},
+      });
       const result = res.data;
 
       if (result.result === 'success') {
@@ -24,20 +33,20 @@ export default () => {
         });
       }
     } catch (error) {
-      console.log('[Login] is error ', error);
+      console.log('[Register] is error ', error);
       if (isEmpty(error.user_message)) {
-        error.user_message = 'Maaf, terjadi kesalahan saat melakukan login';
+        error.user_message = 'Maaf, terjadi kesalahan saat melakukan Register';
       }
       Toast('Gagal melalukan login', error.user_message);
     }
     setLoading(false);
   };
 
-  const check = ({a = '', isPassword = false}) => {
+  const check = ({a = '', name = 'input', isPassword = false}) => {
     if (isEmpty(a)) {
-      return `Masukkan ${isPassword ? 'password' : 'email'} kamu`;
+      return `Masukkan ${name} kamu`;
     } else if (a.length < 3) {
-      return `Masukkan ${isPassword ? 'password' : 'email'} min.3 karakter`;
+      return `Masukkan ${name} min.3 karakter`;
     } else {
       return null;
     }
@@ -45,7 +54,7 @@ export default () => {
 
   return {
     loading,
-    login,
+    register,
     check,
   };
 };

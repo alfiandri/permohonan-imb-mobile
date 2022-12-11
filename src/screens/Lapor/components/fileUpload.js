@@ -1,14 +1,32 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { ActivityIndicator, Platform, View } from 'react-native';
+import { ActivityIndicator, Platform, TextInput, View } from 'react-native';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
 import { Button, Modal } from '../../../global/components';
 import _, { COLORS } from '../../../global/styles';
-import { isEmpty, PUT, Toast } from '../../../helper/utils';
-import { CustomError } from '../../../helper/utils/handleResponse';
+import { isEmpty, Toast } from '../../../helper/utils';
 
-export default forwardRef(({}, ref) => {
+export default forwardRef(
+  /**
+   * @param {import('react-native').TextInputProps} props
+   */
+  (props, ref) => {
+    const {
+      label,
+      editable = true,
+      disableForm = false,
+      password = false,
+      disableBorder = false,
+      onEndEditing = () => {},
+      onReset = () => {},
+      defaultValue,
+      rightLabel,
+      containerStyle,
+      style,
+    } = props;
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
 
   const modal = useRef();
 
@@ -148,31 +166,7 @@ export default forwardRef(({}, ref) => {
   const updatePhoto = async photo => {
     setLoading(true);
     cancelModal();
-
-    try {
-      const body = {
-        photo,
-      };
-      const res = await PUT({url: '/auth/update/photo', body});
-      const result = res?.data;
-
-      // console.log({result});
-
-      if (result.result == 'success' && res.code == 200) {
-        Toast('Berhasil mengubah photo');
-      } else {
-        throw new CustomError({
-          message: result.title,
-          user_message: result.title,
-        });
-      }
-    } catch (error) {
-      console.log('[updatePhoto] is error ', error);
-      if (isEmpty(error?.user_message)) {
-        error.user_message = 'Terjadi kesalahan saat mengupload photo';
-      }
-      Toast(error.user_message);
-    }
+    setFile(photo);
     setLoading(false);
   };
 
@@ -191,6 +185,11 @@ export default forwardRef(({}, ref) => {
             size={Platform.OS == 'ios' ? 'small' : 'large'}
             color={COLORS.white}
           />
+        </View>
+      )}
+      {file && (
+        <View>
+          <TextInput ref={attachmentRef} value={file} />
         </View>
       )}
       <Modal ref={modal}>
