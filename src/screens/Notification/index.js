@@ -3,26 +3,24 @@ import moment from 'moment';
 import 'moment/locale/id';
 import React from 'react';
 import {
-  Image,
   RefreshControl,
   ScrollView,
   StatusBar,
   StyleSheet,
   View
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Badge } from 'react-native-paper';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Navbar, Text, ViewError } from '../../global/components';
 import _ from '../../global/styles';
-import { useHome } from '../../helper/hooks/home';
+import { useNotification } from '../../helper/hooks/notifications';
 import { screenWidth } from '../../helper/utils';
 
 const FETCH = axios.CancelToken?.source();
 
 export default ({navigation}) => {
-  const {data, loading, refreshing, err, errMessage, doRefresh} = useHome();
+  const {data, loading, refreshing, err, errMessage, doRefresh} =
+    useNotification();
   const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 
   const styles = StyleSheet.create({
@@ -33,9 +31,10 @@ export default ({navigation}) => {
       shadowOpacity: 0.26,
       elevation: 8,
       backgroundColor: 'white',
-      padding: 20,
-      borderRadius: 10,
-      marginHorizontal: 5,
+      paddingTop: 30,
+      paddingLeft: 20,
+      paddingBottom: 10,
+      borderRadius: 30,
       flexDirection: 'row',
     },
     image: {
@@ -70,29 +69,18 @@ export default ({navigation}) => {
           // eslint-disable-next-line react-native/no-inline-styles
           index != array.length - 1,
         ]}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.push('ReportDetail', {data: item});
-          }}
-          style={[_.row, _.itemsCenter, _.pv_2, _.ph_1]}>
+        <View style={[_.row, _.itemsCenter, _.pv_2, _.ph_1]}>
           <View style={styles.container}>
-            <Image
-              defaultSource={require('../../assets/images/empty.png')}
-              source={require('../../assets/images/empty.png')}
-              style={styles.image}
-            />
             <View style={styles.titleContainer}>
-            <Badge style={_.mb_1}>{item.type}</Badge>
-              <Badge>{item.category.title}</Badge>
               <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.description}>{item.short_description}</Text>
+              <Text style={styles.description}>{item.description}</Text>
               <Text style={styles.description}>
                 <Icon name="clock" size={12} /> {''}
                 {moment(item.created_at).fromNow()}
               </Text>
             </View>
           </View>
-        </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -106,7 +94,7 @@ export default ({navigation}) => {
       />
       <Navbar color="white" disableBack>
         <Text size={28} weight="bold">
-          Laporan
+          Notifikasi
         </Text>
       </Navbar>
       <ScrollView
@@ -118,8 +106,8 @@ export default ({navigation}) => {
         <View>
           {!loading ? (
             !err ? (
-              data?.data?.data.length > 0 ? (
-                data.data.data.map(renderItems)
+              data?.data?.length > 0 ? (
+                data.data.map(renderItems)
               ) : (
                 <ViewError empty onPress={doRefresh} />
               )

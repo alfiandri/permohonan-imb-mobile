@@ -1,4 +1,3 @@
-import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/id';
 import React from 'react';
@@ -16,14 +15,11 @@ import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Navbar, Text, ViewError } from '../../global/components';
 import _ from '../../global/styles';
-import { useHome } from '../../helper/hooks/home';
+import { useMyReport } from '../../helper/hooks/myReport';
 import { screenWidth } from '../../helper/utils';
 
-const FETCH = axios.CancelToken?.source();
-
 export default ({navigation}) => {
-  const {data, loading, refreshing, err, errMessage, doRefresh} = useHome();
-  const STATUSBAR_HEIGHT = StatusBar.currentHeight;
+  const {data, loading, refreshing, err, errMessage, doRefresh} = useMyReport();
 
   const styles = StyleSheet.create({
     container: {
@@ -82,7 +78,7 @@ export default ({navigation}) => {
               style={styles.image}
             />
             <View style={styles.titleContainer}>
-            <Badge style={_.mb_1}>{item.type}</Badge>
+              <Badge style={_.mb_1}>{item.type}</Badge>
               <Badge>{item.category.title}</Badge>
               <Text style={styles.title}>{item.title}</Text>
               <Text style={styles.description}>{item.short_description}</Text>
@@ -106,7 +102,7 @@ export default ({navigation}) => {
       />
       <Navbar color="white" disableBack>
         <Text size={28} weight="bold">
-          Laporan
+          Laporanku
         </Text>
       </Navbar>
       <ScrollView

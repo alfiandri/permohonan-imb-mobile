@@ -31,6 +31,12 @@ const SCREEN = {
     Home: {
       path: require(`${path}Home`),
     },
+    MyLapor: {
+      path: require(`${path}MyLapor`),
+    },
+    Notification: {
+      path: require(`${path}Notification`),
+    },
     ProfileList: {
       path: require(`${path}Profile/List`),
     },
@@ -56,10 +62,20 @@ const SCREEN = {
       label: 'Beranda',
       icon: 'home',
     },
+    MyLapor: {
+      path: require(`${path}MyLapor`),
+      label: 'Laporanku',
+      icon: 'book',
+    },
     Lapor: {
       path: require(`${path}Lapor`),
       label: 'Lapor',
       icon: 'plus-circle',
+    },
+    Notification: {
+      path: require(`${path}Notification`),
+      label: 'Notifikasi',
+      icon: 'bell',
     },
     Profile: {
       path: require(`${path}Profile`),
@@ -73,6 +89,10 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+      }}
       tabBar={props => <TabOptions {...props} />}>
       {Object.keys(SCREEN.Tab).map((key, i) => (
         <Tab.Screen
@@ -144,10 +164,16 @@ const Router = () => {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={initialScreen} headerMode="none">
+        <Stack.Navigator
+          initialRouteName={initialScreen}
+          options={{headerShown: false}}
+          screenOptions={{
+            headerShown: false,
+            gestureEnabled: true,
+          }}>
           {isLogin && <Stack.Screen name="Tabs" component={TabNavigator} />}
           {Object.keys(screen).map((key, i) => (
-            <Tab.Screen
+            <Stack.Screen
               key={i}
               name={key}
               component={screen[key].path.default}

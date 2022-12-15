@@ -33,7 +33,6 @@ export default () => {
   const descriptionRef = useRef();
   const eventLocationRef = useRef();
   const categoryRef = useRef();
-  const attachmentRef = useRef();
 
   const cancelModal = () => {
     try {
@@ -80,14 +79,14 @@ export default () => {
     }
     setLoading(false);
     if (dataResult) {
-      navigation.navigate('ReportDetail', {data: dataResult});
+      navigation.push('ReportDetail', {data: dataResult});
     }
   };
   //#endregion Method
 
   //#region Handler
   const handlerSave = () => {
-    setLoading(true);
+    // setLoading(true);
     try {
       console.log('saving...');
       if (isEmpty(titleRef.current?.value)) {
