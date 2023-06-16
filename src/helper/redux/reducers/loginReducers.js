@@ -5,11 +5,11 @@ import { LOGOUT, SET_LOGIN } from '../types';
 const initialState = {
   token: null,
   loading: true,
-  role: null,
+  tipe: null,
 };
 
 const loginReducer = (state = initialState, {data = {}, type = ''}) => {
-  const {token = null, role = ''} = data;
+  const {token = null, tipe = ''} = data;
   switch (type) {
     case SET_LOGIN:
       if (!token) {
@@ -19,7 +19,7 @@ const loginReducer = (state = initialState, {data = {}, type = ''}) => {
       AsyncStorage.setItem(STORAGEKEYS.authToken, token);
       return {
         token,
-        role,
+        tipe,
         loading: false,
       };
     case LOGOUT:

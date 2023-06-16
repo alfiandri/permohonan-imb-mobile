@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const path = '../screens/';
 
-const SCREEN = {
+let SCREEN = {
   Auth: {
     Login: {
       path: require(`${path}Auth/Login`),
@@ -33,6 +33,12 @@ const SCREEN = {
     },
     MyLapor: {
       path: require(`${path}MyLapor`),
+    },
+    Persetujuan: {
+      path: require(`${path}Persetujuan`),
+    },
+    CetakLaporan: {
+      path: require(`${path}CetakLaporan`),
     },
     Notification: {
       path: require(`${path}Notification`),
@@ -64,12 +70,22 @@ const SCREEN = {
     },
     MyLapor: {
       path: require(`${path}MyLapor`),
-      label: 'Laporanku',
+      label: 'Permohonanku',
       icon: 'book',
+    },
+    Persetujuan: {
+      path: require(`${path}Persetujuan`),
+      label: 'Persetujuan',
+      icon: 'book',
+    },
+    CetakLaporan: {
+      path: require(`${path}CetakLaporan`),
+      label: 'CetakLaporan',
+      icon: 'print',
     },
     Lapor: {
       path: require(`${path}Lapor`),
-      label: 'Lapor',
+      label: 'Permohonan',
       icon: 'plus-circle',
     },
     Notification: {
@@ -86,6 +102,294 @@ const SCREEN = {
 };
 
 const TabNavigator = () => {
+  const tipe = useSelector(s => s.login.tipe);
+  console.log(tipe)
+  
+  let SCREENTAB = {
+    Auth: {
+      Login: {
+        path: require(`${path}Auth/Login`),
+      },
+      Register: {
+        path: require(`${path}Auth/Register`),
+      },
+    },
+    SplashScreen: {
+      SplashScreen: {
+        path: require(`${path}SplashScreen`),
+      },
+    },
+    App: {
+      Home: {
+        path: require(`${path}Home`),
+      },
+      Persetujuan: {
+        path: require(`${path}Persetujuan`),
+      },
+      Notification: {
+        path: require(`${path}Notification`),
+      },
+      ProfileList: {
+        path: require(`${path}Profile/List`),
+      },
+      ProfileAdd: {
+        path: require(`${path}Profile/Add`),
+      },
+      ProfileEdit: {
+        path: require(`${path}Profile/Edit`),
+      },
+      ProfileDetail: {
+        path: require(`${path}Profile/Detail`),
+      },
+      ProfileChangePassword: {
+        path: require(`${path}Profile/ChangePassword`),
+      },
+      ReportDetail: {
+        path: require(`${path}ReportDetail`),
+      },
+    },
+    Tab: {
+      Home: {
+        path: require(`${path}Home`),
+        label: 'Beranda',
+        icon: 'home',
+      },
+      Persetujuan: {
+        path: require(`${path}Persetujuan`),
+        label: 'Persetujuan',
+        icon: 'book',
+      },
+      Notification: {
+        path: require(`${path}Notification`),
+        label: 'Notifikasi',
+        icon: 'bell',
+      },
+      Profile: {
+        path: require(`${path}Profile`),
+        label: 'Pengaturan',
+        icon: 'cog',
+      },
+    },
+  };
+
+  if (tipe == 'kabid') {
+    SCREENTAB = {
+      Auth: {
+        Login: {
+          path: require(`${path}Auth/Login`),
+        },
+        Register: {
+          path: require(`${path}Auth/Register`),
+        },
+      },
+      SplashScreen: {
+        SplashScreen: {
+          path: require(`${path}SplashScreen`),
+        },
+      },
+      App: {
+        Home: {
+          path: require(`${path}Home`),
+        },
+        Persetujuan: {
+          path: require(`${path}Persetujuan`),
+        },
+        Notification: {
+          path: require(`${path}Notification`),
+        },
+        ProfileList: {
+          path: require(`${path}Profile/List`),
+        },
+        ProfileAdd: {
+          path: require(`${path}Profile/Add`),
+        },
+        ProfileEdit: {
+          path: require(`${path}Profile/Edit`),
+        },
+        ProfileDetail: {
+          path: require(`${path}Profile/Detail`),
+        },
+        ProfileChangePassword: {
+          path: require(`${path}Profile/ChangePassword`),
+        },
+        ReportDetail: {
+          path: require(`${path}ReportDetail`),
+        },
+      },
+      Tab: {
+        Home: {
+          path: require(`${path}Home`),
+          label: 'Beranda',
+          icon: 'home',
+        },
+        Persetujuan: {
+          path: require(`${path}Persetujuan`),
+          label: 'Persetujuan',
+          icon: 'book',
+        },
+        Notification: {
+          path: require(`${path}Notification`),
+          label: 'Notifikasi',
+          icon: 'bell',
+        },
+        Profile: {
+          path: require(`${path}Profile`),
+          label: 'Pengaturan',
+          icon: 'cog',
+        },
+      },
+    };
+  }
+  if (tipe == 'staff') {
+    SCREENTAB = {
+      Auth: {
+        Login: {
+          path: require(`${path}Auth/Login`),
+        },
+        Register: {
+          path: require(`${path}Auth/Register`),
+        },
+      },
+      SplashScreen: {
+        SplashScreen: {
+          path: require(`${path}SplashScreen`),
+        },
+      },
+      App: {
+        Home: {
+          path: require(`${path}Home`),
+        },
+        Persetujuan: {
+          path: require(`${path}Persetujuan`),
+        },
+        CetakLaporan: {
+          path: require(`${path}CetakLaporan`),
+        },
+        Notification: {
+          path: require(`${path}Notification`),
+        },
+        ProfileList: {
+          path: require(`${path}Profile/List`),
+        },
+        ProfileAdd: {
+          path: require(`${path}Profile/Add`),
+        },
+        ProfileEdit: {
+          path: require(`${path}Profile/Edit`),
+        },
+        ProfileDetail: {
+          path: require(`${path}Profile/Detail`),
+        },
+        ProfileChangePassword: {
+          path: require(`${path}Profile/ChangePassword`),
+        },
+        ReportDetail: {
+          path: require(`${path}ReportDetail`),
+        },
+      },
+      Tab: {
+        Home: {
+          path: require(`${path}Home`),
+          label: 'Beranda',
+          icon: 'home',
+        },
+        Persetujuan: {
+          path: require(`${path}Persetujuan`),
+          label: 'Persetujuan',
+          icon: 'book',
+        },
+        CetakLaporan: {
+          path: require(`${path}CetakLaporan`),
+          label: 'CetakLaporan',
+          icon: 'print',
+        },
+        Notification: {
+          path: require(`${path}Notification`),
+          label: 'Notifikasi',
+          icon: 'bell',
+        },
+        Profile: {
+          path: require(`${path}Profile`),
+          label: 'Pengaturan',
+          icon: 'cog',
+        },
+      },
+    };
+  }
+  if (tipe == 'pemohon') {
+    SCREENTAB = {
+      Auth: {
+        Login: {
+          path: require(`${path}Auth/Login`),
+        },
+        Register: {
+          path: require(`${path}Auth/Register`),
+        },
+      },
+      SplashScreen: {
+        SplashScreen: {
+          path: require(`${path}SplashScreen`),
+        },
+      },
+      App: {
+        Home: {
+          path: require(`${path}Home`),
+        },
+        MyLapor: {
+          path: require(`${path}MyLapor`),
+        },
+        Notification: {
+          path: require(`${path}Notification`),
+        },
+        ProfileList: {
+          path: require(`${path}Profile/List`),
+        },
+        ProfileAdd: {
+          path: require(`${path}Profile/Add`),
+        },
+        ProfileEdit: {
+          path: require(`${path}Profile/Edit`),
+        },
+        ProfileDetail: {
+          path: require(`${path}Profile/Detail`),
+        },
+        ProfileChangePassword: {
+          path: require(`${path}Profile/ChangePassword`),
+        },
+        ReportDetail: {
+          path: require(`${path}ReportDetail`),
+        },
+      },
+      Tab: {
+        Home: {
+          path: require(`${path}Home`),
+          label: 'Beranda',
+          icon: 'home',
+        },
+        MyLapor: {
+          path: require(`${path}MyLapor`),
+          label: 'Permohonanku',
+          icon: 'book',
+        },
+        Lapor: {
+          path: require(`${path}Lapor`),
+          label: 'Permohonan',
+          icon: 'plus-circle',
+        },
+        Notification: {
+          path: require(`${path}Notification`),
+          label: 'Notifikasi',
+          icon: 'bell',
+        },
+        Profile: {
+          path: require(`${path}Profile`),
+          label: 'Pengaturan',
+          icon: 'cog',
+        },
+      },
+    };
+  }
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -94,11 +398,11 @@ const TabNavigator = () => {
         gestureEnabled: true,
       }}
       tabBar={props => <TabOptions {...props} />}>
-      {Object.keys(SCREEN.Tab).map((key, i) => (
+      {Object.keys(SCREENTAB.Tab).map((key, i) => (
         <Tab.Screen
           key={i}
           name={key}
-          component={SCREEN.Tab[key].path.default}
+          component={SCREENTAB.Tab[key].path.default}
         />
       ))}
     </Tab.Navigator>

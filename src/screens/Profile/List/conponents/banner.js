@@ -1,10 +1,10 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {forwardRef, useImperativeHandle, useState} from 'react';
-import {TextInput, TouchableOpacity, View} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import { TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {useSelector} from 'react-redux';
-import _, {COLORS, FONTS} from '../../../../global/styles';
-import {isEmpty} from '../../../../helper/utils';
+import { useSelector } from 'react-redux';
+import _, { COLORS, FONTS } from '../../../../global/styles';
+import { isEmpty } from '../../../../helper/utils';
 
 export default forwardRef(
     /**
@@ -20,8 +20,8 @@ export default forwardRef(
 
         useImperativeHandle(ref, () => ({keyword, setKeyword}));
 
-        const roleAllow = ['superadmin', 'admin'];
-        const isAllow = !isEmpty(roleAllow.find((s) => s == auth.role));
+        const tipeAllow = ['superadmin', 'admin'];
+        const isAllow = !isEmpty(tipeAllow.find((s) => s == auth.tipe));
 
         return (
             <View style={[_.row, _.p_2, _.bgColor('secondary'), {borderBottomLeftRadius: 10, borderBottomRightRadius: 10}]}>

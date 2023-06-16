@@ -1,10 +1,10 @@
 import { LOGOUT, SET_LOGIN } from '../types';
 
-export const setLogin = ({token = null, role = null}) => ({
+export const setLogin = ({token = null, tipe = null}) => ({
   type: SET_LOGIN,
   data: {
     token,
-    role,
+    tipe,
   },
 });
 

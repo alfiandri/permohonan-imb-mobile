@@ -3,6 +3,7 @@ import 'moment/locale/id';
 import React from 'react';
 import {
   Image,
+  Linking,
   RefreshControl,
   ScrollView,
   StatusBar,
@@ -16,10 +17,30 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Navbar, Text, ViewError } from '../../global/components';
 import _ from '../../global/styles';
 import { useMyReport } from '../../helper/hooks/myReport';
-import { screenWidth } from '../../helper/utils';
+import { isEmpty, screenWidth, Toast } from '../../helper/utils';
 
 export default ({navigation}) => {
   const {data, loading, refreshing, err, errMessage, doRefresh} = useMyReport();
+
+  const openLink = async (apiURL = '') => {
+    try {
+      // const isValid = await Linking.canOpenURL(apiURL);
+      // if (isValid) {
+        Linking.openURL(apiURL);
+      // } else {
+      //   throw new CustomError({
+      //     message: 'Terjadi kesalahan saat membuka tautan',
+      //     user_message: 'Terjadi kesalahan saat membuka tautan',
+      //   });
+      // }
+    } catch (error) {
+      console.log('[openLink] is error ', error);
+      if (isEmpty(error.user_message)) {
+        error.user_message = 'Terjadi kesalahan saat memuat laporan';
+      }
+      Toast('Gagal membuka tautan', 'Terjadi kesalahan saat membuka tautan');
+    }
+  };
 
   const styles = StyleSheet.create({
     container: {
@@ -58,6 +79,7 @@ export default ({navigation}) => {
   });
 
   function renderItems(item, index, array) {
+    // console.log(item);
     return (
       <View
         key={index}
@@ -67,9 +89,12 @@ export default ({navigation}) => {
           index != array.length - 1,
         ]}>
         <TouchableOpacity
-          onPress={() => {
-            navigation.push('ReportDetail', {data: item});
-          }}
+          onPress={() =>
+            openLink(
+              'https://imb.evaluasi-portalsia.my.id/public_html/formulir/' +
+                item.id,
+            )
+          }
           style={[_.row, _.itemsCenter, _.pv_2, _.ph_1]}>
           <View style={styles.container}>
             <Image
@@ -103,7 +128,7 @@ export default ({navigation}) => {
       />
       <Navbar color="white" disableBack>
         <Text size={28} weight="bold">
-          Laporanku
+          Cetak Laporan
         </Text>
       </Navbar>
       <ScrollView

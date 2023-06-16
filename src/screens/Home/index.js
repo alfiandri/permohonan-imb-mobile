@@ -82,10 +82,11 @@ export default ({navigation}) => {
               style={styles.image}
             />
             <View style={styles.titleContainer}>
-            <Badge style={_.mb_1}>{item.type}</Badge>
-              <Badge>{item.category.title}</Badge>
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.description}>{item.short_description}</Text>
+              <Badge style={_.mb_1}>{item.jenis_permohonan}</Badge>
+              {/* <Badge>{item.category.title}</Badge> */}
+              <Text style={styles.title}>{item.nama}</Text>
+              <Text style={styles.description}>{item.alamat}</Text>
+              <Text style={styles.description}>Status : {item.status}</Text>
               <Text style={styles.description}>
                 <Icon name="clock" size={12} /> {''}
                 {moment(item.created_at).fromNow()}
@@ -106,7 +107,7 @@ export default ({navigation}) => {
       />
       <Navbar color="white" disableBack>
         <Text size={28} weight="bold">
-          Laporan
+          Permohonan
         </Text>
       </Navbar>
       <ScrollView

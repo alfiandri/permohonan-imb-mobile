@@ -24,8 +24,8 @@ export default () => {
       const result = res.data;
 
       if (result.result === 'success') {
-        const {token = null, role = null} = result?.data?.meta;
-        dispatch(setLogin({role, token}));
+        const {token = null, tipe = null} = result?.data?.meta;
+        dispatch(setLogin({token, tipe}));
       } else {
         throw new CustomError({
           message: result.title,

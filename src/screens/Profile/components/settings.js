@@ -1,14 +1,14 @@
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
-import {Text} from '../../../global/components';
-import _, {COLORS} from '../../../global/styles';
+import { TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {useSelector} from 'react-redux';
-import {isEmpty, Toast} from '../../../helper/utils';
+import { useSelector } from 'react-redux';
+import { Text } from '../../../global/components';
+import _, { COLORS } from '../../../global/styles';
+import { isEmpty, Toast } from '../../../helper/utils';
 
 export default ({}) => {
-  const auth = useSelector(s => s.login.role);
+  const auth = useSelector(s => s.login.tipe);
   const navigation = useNavigation();
 
   const menu = {
@@ -29,7 +29,7 @@ export default ({}) => {
         label: 'Tambah Pengguna',
         icon: 'user-plus',
         navigation: 'ProfileAdd',
-        role: ['superadmin', 'admin'],
+        tipe: ['superadmin', 'admin'],
       },
     ],
   };
@@ -52,7 +52,7 @@ export default ({}) => {
       {Object.keys(menu).map((key, index) => {
         if (
           menu[key].find(
-            s => isEmpty(s?.role) || s?.role.find(role => role == auth),
+            s => isEmpty(s?.tipe) || s?.tipe.find(tipe => tipe == auth),
           )
         ) {
           return (
@@ -64,8 +64,8 @@ export default ({}) => {
               <View style={_.mt_2}>
                 {menu[key].map((item, i) => {
                   if (
-                    isEmpty(item.role) ||
-                    item?.role.find(role => role == auth)
+                    isEmpty(item.tipe) ||
+                    item?.tipe.find(tipe => tipe == auth)
                   ) {
                     return (
                       <TouchableOpacity

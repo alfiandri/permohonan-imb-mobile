@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "MelaporSibolga.app"
-               BlueprintName = "MelaporSibolga"
-               ReferencedContainer = "container:MelaporSibolga.xcodeproj">
+               BuildableName = "PermohonanIMB.app"
+               BlueprintName = "PermohonanIMB"
+               ReferencedContainer = "container:PermohonanIMB.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "MelaporSibolgaTests.xctest"
-               BlueprintName = "MelaporSibolgaTests"
-               ReferencedContainer = "container:MelaporSibolga.xcodeproj">
+               BuildableName = "PermohonanIMBTests.xctest"
+               BlueprintName = "PermohonanIMBTests"
+               ReferencedContainer = "container:PermohonanIMB.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MelaporSibolga.app"
-            BlueprintName = "MelaporSibolga"
-            ReferencedContainer = "container:MelaporSibolga.xcodeproj">
+            BuildableName = "PermohonanIMB.app"
+            BlueprintName = "PermohonanIMB"
+            ReferencedContainer = "container:PermohonanIMB.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MelaporSibolga.app"
-            BlueprintName = "MelaporSibolga"
-            ReferencedContainer = "container:MelaporSibolga.xcodeproj">
+            BuildableName = "PermohonanIMB.app"
+            BlueprintName = "PermohonanIMB"
+            ReferencedContainer = "container:PermohonanIMB.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

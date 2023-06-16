@@ -1,8 +1,8 @@
 import moment from 'moment';
-import React, {useEffect, useRef, useState} from 'react';
-import {Linking} from 'react-native';
-import {GET, isEmpty, Toast} from '../utils';
-import {CustomError} from '../utils/handleResponse';
+import React, { useEffect, useRef, useState } from 'react';
+import { Linking } from 'react-native';
+import { GET, isEmpty, Toast } from '../utils';
+import { CustomError } from '../utils/handleResponse';
 
 export const useReport = () => {
     const [data, setData] = useState([]);

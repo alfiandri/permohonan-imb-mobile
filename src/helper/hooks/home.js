@@ -57,7 +57,7 @@ export const useHome = () => {
 
         // set new token
         const token = await AsyncStorage.getItem(STORAGEKEYS.authToken);
-        dispatch(setLogin({token, role: profile?.role}));
+        dispatch(setLogin({token, tipe: profile?.tipe}));
       } else {
         throw new CustomError({
           message: result.title,

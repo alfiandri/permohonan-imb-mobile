@@ -6,13 +6,13 @@ export const setProfile = (data = {}) => {
     id = null,
     name = null,
     photo = null,
-    role = null,
+    tipe = null,
     updated_at = null,
     username = null,
   } = data;
   return {
     type: SET_PROFILE,
-    data: {...data, email, id, name, photo, role, updated_at, username},
+    data: {...data, email, id, name, photo, tipe, updated_at, username},
   };
 };
 

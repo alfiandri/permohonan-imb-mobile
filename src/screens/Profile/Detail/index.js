@@ -1,24 +1,24 @@
 import axios from 'axios';
-import React, {useEffect, useRef, useState} from 'react';
-import {Alert, RefreshControl, ScrollView, StatusBar, View} from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Alert, RefreshControl, ScrollView, StatusBar, View } from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
-  Button,
-  Navbar,
-  OptionPicker,
-  Text,
-  TextInput,
-  ViewError,
+    Button,
+    Navbar,
+    OptionPicker,
+    Text,
+    TextInput,
+    ViewError
 } from '../../../global/components';
 import _ from '../../../global/styles';
 import {
-  DELETE,
-  GET,
-  isEmpty,
-  POST,
-  screenWidth,
-  Toast,
+    DELETE,
+    GET,
+    isEmpty,
+    POST,
+    screenWidth,
+    Toast
 } from '../../../helper/utils';
 
 const FETCH = axios.CancelToken.source();
@@ -32,7 +32,7 @@ export default ({navigation, route}) => {
   const [loading, setLoading] = useState(false);
   const [editAble, setEditAble] = useState(false);
 
-  const auth = useSelector(s => s.login.role);
+  const auth = useSelector(s => s.login.tipe);
 
   const nameRef = useRef();
   const emailRef = useRef();

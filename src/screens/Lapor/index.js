@@ -1,14 +1,10 @@
 import { useNavigation } from '@react-navigation/core';
-import { Checkbox } from 'galio-framework';
-import moment from 'moment';
 import React, { useRef, useState } from 'react';
-import { Platform, ScrollView, View } from 'react-native';
+import { Image, Platform, SafeAreaView, ScrollView, View } from 'react-native';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
-import RadioForm from 'react-native-simple-radio-button';
 import {
   Button,
-  DatePicker,
   Modal,
   OptionPicker,
   Text,
@@ -20,19 +16,33 @@ import { CustomError } from '../../helper/utils/handleResponse';
 
 export default () => {
   const [loading, setLoading] = useState(false);
-  const [incidentDate, setIncidentDate] = useState(new Date(moment()));
-  const [anonym, setAnonym] = useState(false);
-  const [secret, setSecret] = useState(false);
-  const [chosenOption, setChosenOption] = useState('ASPIRASI');
+  // const [incidentDate, setIncidentDate] = useState(new Date(moment()));
+  // const [anonym, setAnonym] = useState(false);
+  // const [secret, setSecret] = useState(false);
+  // const [chosenOption, setChosenOption] = useState('ASPIRASI');
   const [file, setFile] = useState(null);
   const modal = useRef();
 
   const navigation = useNavigation();
 
-  const titleRef = useRef();
-  const descriptionRef = useRef();
-  const eventLocationRef = useRef();
-  const categoryRef = useRef();
+  const namaPemohonRef = useRef();
+  const alamatPemohonRef = useRef();
+  const jenisPermohonanRef = useRef();
+  const kelurahan_kecamatanRef = useRef();
+  const nomor_telpRef = useRef();
+  const nama_perusahaanRef = useRef();
+  const bentuk_badan_usahaRef = useRef();
+  const alamat_perusahaanRef = useRef();
+  const kelurahan_kecamatan_perusahaanRef = useRef();
+  const nomor_telp_perusahaanRef = useRef();
+  const jenis_penggunaan_bangunanRef = useRef();
+  const jumlah_unitRef = useRef();
+  const jumlah_lantaiRef = useRef();
+  const luas_bangunanRef = useRef();
+  const status_dan_luas_tanahRef = useRef();
+  const jalan_bangunanRef = useRef();
+  const kelurahan_bangunanRef = useRef();
+  const kecamatan_bangunanRef = useRef();
 
   const cancelModal = () => {
     try {
@@ -47,15 +57,26 @@ export default () => {
     let dataResult = [];
     try {
       const body = {
-        title: titleRef.current?.value,
-        category_id: categoryRef.current?.value,
-        description: descriptionRef.current?.value,
-        event_date: incidentDate,
-        event_location: eventLocationRef.current?.value,
-        type: chosenOption,
-        is_anonym: anonym,
-        is_secret: secret,
-        attachment: file,
+        jenis_permohonan: jenisPermohonanRef.current?.value,
+        nama: namaPemohonRef.current?.value,
+        alamat: alamatPemohonRef.current?.value,
+        kelurahan_kecamatan: kelurahan_kecamatanRef.current?.value,
+        nomor_telp: nomor_telpRef.current?.value,
+        nama_perusahaan: nama_perusahaanRef.current?.value,
+        bentuk_badan_usaha: bentuk_badan_usahaRef.current?.value,
+        alamat_perusahaan: alamat_perusahaanRef.current?.value,
+        kelurahan_kecamatan_perusahaan:
+          kelurahan_kecamatan_perusahaanRef.current?.value,
+        nomor_telp_perusahaan: nomor_telp_perusahaanRef.current?.value,
+        jenis_penggunaan_bangunan: jenis_penggunaan_bangunanRef.current?.value,
+        jumlah_unit: jumlah_unitRef.current?.value,
+        jumlah_lantai: jumlah_lantaiRef.current?.value,
+        luas_bangunan: luas_bangunanRef.current?.value,
+        status_dan_luas_tanah: status_dan_luas_tanahRef.current?.value,
+        jalan_bangunan: jalan_bangunanRef.current?.value,
+        kelurahan_bangunan: kelurahan_bangunanRef.current?.value,
+        kecamatan_bangunan: kecamatan_bangunanRef.current?.value,
+        bukti_pembayaran: file,
       };
 
       const res = await POST({url: '/report', body});
@@ -88,25 +109,25 @@ export default () => {
   const handlerSave = () => {
     // setLoading(true);
     try {
-      console.log('saving...');
-      if (isEmpty(titleRef.current?.value)) {
-        titleRef.current?.setErrMessage('Title tidak boleh kosong');
-        titleRef.current?.focus();
+      // console.log('saving...');
+      if (isEmpty(namaPemohonRef.current?.value)) {
+        namaPemohonRef.current?.setErrMessage('Nama tidak boleh kosong');
+        namaPemohonRef.current?.focus();
         setLoading(false);
         return;
       }
-      if (isEmpty(descriptionRef.current?.value)) {
-        descriptionRef.current?.setErrMessage('Deskripsi tidak boleh kosong');
-        descriptionRef.current?.focus();
-        setLoading(false);
-        return;
-      }
-      if (isEmpty(eventLocationRef.current?.value)) {
-        eventLocationRef.current?.setErrMessage('eventDate tidak boleh kosong');
-        eventLocationRef.current?.focus();
-        setLoading(false);
-        return;
-      }
+      // if (isEmpty(alamatPemohonRef.current?.value)) {
+      //   alamatPemohonRef.current?.setErrMessage('Alamat tidak boleh kosong');
+      //   alamatPemohonRef.current?.focus();
+      //   setLoading(false);
+      //   return;
+      // }
+      // if (isEmpty(eventLocationRef.current?.value)) {
+      //   eventLocationRef.current?.setErrMessage('eventDate tidak boleh kosong');
+      //   eventLocationRef.current?.focus();
+      //   setLoading(false);
+      //   return;
+      // }
       save();
     } catch (error) {
       console.log('[HandlerSave] is error ', error);
@@ -131,7 +152,7 @@ export default () => {
               : PERMISSIONS.IOS.PHOTO_LIBRARY,
           );
         default:
-          return RESULTS.DENIED;
+          return 'RESULTS.DENIED';
       }
     } catch (error) {
       console.log('[getPermission]  is error ', error);
@@ -245,24 +266,35 @@ export default () => {
   ];
 
   const validate = [
-    {id: 1, label: 'Agama'},
-    {id: 6, label: 'Kependudukan'},
-    {id: 2, label: 'Kesehatan'},
-    {id: 7, label: 'Ketenagakerjaan'},
-    {id: 3, label: 'Lingkungan Hidup'},
-    {id: 4, label: 'Pendidikan dan Kebudayaan'},
-    {id: 9, label: 'Perhubungan'},
-    {id: 5, label: 'Politik dan Hukum'},
-    {id: 8, label: 'Sosial dan Kesejahteraan'},
-    {id: 10, label: 'Teknologi Informasi dan KomueventDateasi'},
-    {id: 11, label: 'Topik Lainnya'},
+    {id: 'Permohonan Baru', label: 'Permohonan Baru'},
+    {
+      id: 'Permohonan Rehabilitasi/Renovasi',
+      label: 'Permohonan Rehabilitasi/Renovasi',
+    },
+    {
+      id: 'Permohonan Memperluas/menambah Lantai',
+      label: 'Permohonan Memperluas/menambah Lantai',
+    },
+    {
+      id: 'Permohonan Pelestarian/Pemugaran',
+      label: 'Permohonan Pelestarian/Pemugaran',
+    },
+    {id: 'Pemecahan Dokumen IMB', label: 'Pemecahan Dokumen IMB'},
+    {
+      id: 'Pembuatan Duplikat/Copy Dokumen IMB',
+      label: 'Pembuatan Duplikat/Copy Dokumen IMB',
+    },
+    {
+      id: 'Pemutakhiran Data/Perubahan Non Teknis Lainnya',
+      label: 'Pemutakhiran Data/Perubahan Non Teknis Lainnya',
+    },
   ];
 
   return (
     <>
-      <View style={[_.flex, _.bgColor('white')]}>
+      <SafeAreaView style={[_.flex, _.bgColor('white')]}>
         <Text weight="semibold" size={28} style={_.ml_2}>
-          Laporkan!
+          Buat Permohonan
         </Text>
 
         <Modal ref={modal}>
@@ -290,108 +322,294 @@ export default () => {
           contentContainerStyle={[_.flexGrow]}
           showsVerticalScrollIndicator={false}>
           <View style={[_.mv_2]}>
-            <View style={_.ml_2}>
-              <RadioForm
-                radio_props={radioProps}
-                initial={0}
-                formHorizontal={false}
-                labelHorizontal={true}
-                buttonColor={'#2196f3'}
-                animation={true}
-                onPress={value => {
-                  setChosenOption(value);
-                }}
-              />
-            </View>
             <OptionPicker
               editAble={!loading}
-              label="Pilih Kategori Laporan "
+              label="Pilih Jenis Permohonan"
               options={validate}
-              ref={categoryRef}
+              ref={jenisPermohonanRef}
               containerStyle={[_.mb_2]}
             />
             <TextInput
-              ref={titleRef}
-              label="Ketik Judul Laporan Anda *"
+              ref={namaPemohonRef}
+              label="Nama Pemohon *"
               editable={!loading}
               returnKeyType="next"
               onSubmitEditing={() => {
                 try {
-                  if (!isEmpty(titleRef?.current?.value)) {
-                    titleRef.current?.setErrMessage();
-                    descriptionRef.current?.focus();
+                  if (!isEmpty(namaPemohonRef?.current?.value)) {
+                    namaPemohonRef.current?.setErrMessage();
+                    alamatPemohonRef.current?.focus();
                   } else {
-                    titleRef.current?.setErrMessage('Title tidak boleh kosong');
+                    namaPemohonRef.current?.setErrMessage(
+                      'Nama Pemohon tidak boleh kosong',
+                    );
                   }
                 } catch (error) {}
               }}
             />
             <TextInput
-              ref={descriptionRef}
-              label="Ketik Isi Laporan Anda *"
+              ref={alamatPemohonRef}
+              label="Ketik Alamat Anda *"
               editable={!loading}
               returnKeyType="next"
               onSubmitEditing={() => {
                 try {
-                  if (!isEmpty(descriptionRef?.current?.value)) {
-                    descriptionRef.current?.setErrMessage();
+                  if (!isEmpty(alamatPemohonRef?.current?.value)) {
+                    alamatPemohonRef.current?.setErrMessage();
+                    kelurahan_kecamatanRef.current?.focus();
                   } else {
-                    descriptionRef.current?.setErrMessage(
-                      'Deskripsi tidak boleh kosong',
+                    alamatPemohonRef.current?.setErrMessage(
+                      'Alamat tidak boleh kosong',
                     );
                   }
                 } catch (error) {}
               }}
             />
 
-            <DatePicker
-              label="Pilih Tanggal Kejadian *"
-              editable={!loading}
-              keyboardType="date"
-              value={incidentDate}
-              onChange={date => setIncidentDate(new Date(date))}
-              returnKeyType="next"
-            />
             <TextInput
-              ref={eventLocationRef}
-              label="Ketik Lokasi Kejadian *"
+              ref={kelurahan_kecamatanRef}
+              label="Ketik Kelurahan/Kecamatan Anda"
               editable={!loading}
-              keyboardType="date"
               returnKeyType="next"
               onSubmitEditing={() => {
                 try {
-                  if (!isEmpty(eventLocationRef?.current?.value)) {
-                    eventLocationRef.current?.setErrMessage();
-                  } else {
-                    eventLocationRef.current?.setErrMessage(
-                      'Tanggal tidak boleh kosong',
-                    );
+                  if (!isEmpty(kelurahan_kecamatanRef?.current?.value)) {
+                    kelurahan_kecamatanRef.current?.setErrMessage();
+                    nomor_telpRef.current?.focus();
                   }
                 } catch (error) {}
               }}
             />
-            <Button
-              icon="edit"
-              color="blueLight"
-              solid
-              textColor="white"
-              onPress={() => modal.current?.show()}>
-              Pilih File
-            </Button>
-            <View style={[_.ml_2, _.mt_2]}>
-              <Checkbox
-                color="info"
-                onChange={value => setAnonym(value)}
-                label="Is Anonym?"
-              />
+
+            <TextInput
+              ref={nomor_telpRef}
+              label="Ketik No Telp"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(nomor_telpRef?.current?.value)) {
+                    nomor_telpRef.current?.setErrMessage();
+                    nama_perusahaanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={nama_perusahaanRef}
+              label="Ketik Nama Perusahaan Anda"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(nama_perusahaanRef?.current?.value)) {
+                    nama_perusahaanRef.current?.setErrMessage();
+                    bentuk_badan_usahaRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={bentuk_badan_usahaRef}
+              label="Ketik Bentuk Badan Usaha"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(bentuk_badan_usahaRef?.current?.value)) {
+                    bentuk_badan_usahaRef.current?.setErrMessage();
+                    alamat_perusahaanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={alamat_perusahaanRef}
+              label="Ketik Alamat Perusahaan"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(alamat_perusahaanRef?.current?.value)) {
+                    alamat_perusahaanRef.current?.setErrMessage();
+                    kelurahan_kecamatan_perusahaanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={kelurahan_kecamatan_perusahaanRef}
+              label="Ketik Kelurahan Kecamatan Perusahaan"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (
+                    !isEmpty(kelurahan_kecamatan_perusahaanRef?.current?.value)
+                  ) {
+                    kelurahan_kecamatan_perusahaanRef.current?.setErrMessage();
+                    nomor_telp_perusahaanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={nomor_telp_perusahaanRef}
+              label="Ketik No Telp. Perusahaan"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(nomor_telp_perusahaanRef?.current?.value)) {
+                    nomor_telp_perusahaanRef.current?.setErrMessage();
+                    jenis_penggunaan_bangunanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={jenis_penggunaan_bangunanRef}
+              label="Ketik Jenis Penggunaan Bangunan"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(jenis_penggunaan_bangunanRef?.current?.value)) {
+                    jenis_penggunaan_bangunanRef.current?.setErrMessage();
+                    jumlah_unitRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={jumlah_unitRef}
+              label="Ketik Jumlah Unit"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(jumlah_unitRef?.current?.value)) {
+                    jumlah_unitRef.current?.setErrMessage();
+                    jumlah_lantaiRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={jumlah_lantaiRef}
+              label="Ketik Jumlah Lantai"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(jumlah_lantaiRef?.current?.value)) {
+                    jumlah_lantaiRef.current?.setErrMessage();
+                    luas_bangunanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={luas_bangunanRef}
+              label="Ketik Luas Bangunan"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(luas_bangunanRef?.current?.value)) {
+                    luas_bangunanRef.current?.setErrMessage();
+                    status_dan_luas_tanahRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={status_dan_luas_tanahRef}
+              label="Ketik Status dan Luas Tanah"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(status_dan_luas_tanahRef?.current?.value)) {
+                    status_dan_luas_tanahRef.current?.setErrMessage();
+                    jalan_bangunanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={jalan_bangunanRef}
+              label="Ketik Jalan Bangunan"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(jalan_bangunanRef?.current?.value)) {
+                    jalan_bangunanRef.current?.setErrMessage();
+                    kecamatan_bangunanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={kecamatan_bangunanRef}
+              label="Ketik Kecamatan Bangunan"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(kecamatan_bangunanRef?.current?.value)) {
+                    kecamatan_bangunanRef.current?.setErrMessage();
+                    kelurahan_bangunanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <TextInput
+              ref={kelurahan_bangunanRef}
+              label="Ketik Kelurahan Bangunan"
+              editable={!loading}
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                try {
+                  if (!isEmpty(kelurahan_bangunanRef?.current?.value)) {
+                    kelurahan_bangunanRef.current?.setErrMessage();
+                    // kecamatan_bangunanRef.current?.focus();
+                  }
+                } catch (error) {}
+              }}
+            />
+
+            <View style={[_.m_2]}>
+              <Button
+                icon="edit"
+                color="blueLight"
+                solid
+                textColor="white"
+                onPress={() => modal.current?.show()}>
+                Upload Bukti Pembayaran
+              </Button>
             </View>
-            <View style={[_.ml_2, _.mt_1]}>
-              <Checkbox
-                color="info"
-                onChange={value => setSecret(value)}
-                label="Is Secret?"
-              />
-            </View>
+
+            {file && (
+              <View style={[_.m_2]}>
+                <Image source={{uri: file}} style={{height: 200, width: 250}} />
+              </View>
+            )}
+
             <Button
               loading={loading}
               onPress={handlerSave}
@@ -400,7 +618,7 @@ export default () => {
             </Button>
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     </>
   );
 };

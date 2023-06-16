@@ -103,7 +103,7 @@ export default ({navigation}) => {
       />
       <Navbar color="white" disableBack>
         <Text size={28} weight="bold">
-          Laporanku
+          Menunggu Persetujuan
         </Text>
       </Navbar>
       <ScrollView

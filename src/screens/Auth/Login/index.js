@@ -147,17 +147,6 @@ export default () => {
             </TouchableOpacity>
           </View>
           <View style={[_.selfCenter, _.itemsCenter, _.mt_1]}>
-            <TouchableOpacity
-              onPress={() =>
-                openLink('https://melapor.sibolgakota.go.id/password/reset')
-              }
-              style={[_.mb_1]}>
-              <Text weight="light">Lupa Password</Text>
-            </TouchableOpacity>
-            <Text weight="light" style={[_.mb_1]}>
-              Atau
-            </Text>
-
             <TouchableOpacity onPress={() => goToScreen('Register')}>
               <Text weight="medium">Belum punya akun? Silakan mendaftar</Text>
             </TouchableOpacity>

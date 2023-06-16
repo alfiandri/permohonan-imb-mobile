@@ -1,17 +1,17 @@
-import {RESET_PROFILE, SET_PROFILE} from '../types';
+import { RESET_PROFILE, SET_PROFILE } from '../types';
 
 const initialState = {
     email: null,
     id: null,
     name: null,
     photo: null,
-    role: null,
+    tipe: null,
     updated_at: null,
     username: null,
 };
 
 const profileReducer = (state = initialState, {data = {}, type = ''}) => {
-    const {email = null, id = null, name = null, photo = null, role = null, updated_at = null, username = null} = data;
+    const {email = null, id = null, name = null, photo = null, tipe = null, updated_at = null, username = null} = data;
     switch (type) {
         case SET_PROFILE:
             return {
@@ -21,7 +21,7 @@ const profileReducer = (state = initialState, {data = {}, type = ''}) => {
                 id,
                 name,
                 photo,
-                role,
+                tipe,
                 updated_at,
                 username,
             };

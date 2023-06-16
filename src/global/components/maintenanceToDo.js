@@ -1,18 +1,17 @@
-import {useNavigation} from '@react-navigation/core';
 import moment from 'moment';
-import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {useSelector} from 'react-redux';
-import {Button, Text, TextInput} from '.';
-import {isEmpty, isTrue, POST, Toast} from '../../helper/utils';
-import _, {COLORS} from '../styles';
+import { useSelector } from 'react-redux';
+import { Button, Text, TextInput } from '.';
+import { isEmpty, isTrue, POST, Toast } from '../../helper/utils';
+import _, { COLORS } from '../styles';
 
 export default ({data = undefined, onLoading = () => {}, style = {}}) => {
     let [maintenance, setMaintenance] = useState();
     const [loading, setLoading] = useState(false);
 
-    const auth = useSelector((s) => s?.login?.role);
+    const auth = useSelector((s) => s?.login?.tipe);
 
     useEffect(() => {
         if (!isEmpty(data)) {

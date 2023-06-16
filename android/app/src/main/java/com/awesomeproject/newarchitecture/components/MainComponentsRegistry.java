@@ -1,4 +1,4 @@
-package com.sibolga.melapor.newarchitecture.components;
+package com.permohonan.imb.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

@@ -1,15 +1,15 @@
-import React, {useRef, useState} from 'react';
-import {ScrollView, StatusBar, View} from 'react-native';
-import {useSelector} from 'react-redux';
-import {Button, Navbar, OptionPicker, Text, TextInput} from '../../../global/components';
+import React, { useRef, useState } from 'react';
+import { ScrollView, StatusBar, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Button, Navbar, OptionPicker, Text, TextInput } from '../../../global/components';
 import _ from '../../../global/styles';
-import {isEmpty, POST, Toast} from '../../../helper/utils';
+import { isEmpty, POST, Toast } from '../../../helper/utils';
 
 export default ({navigation, route}) => {
     const addNewUser = route.params?.addNewUser;
     const [loading, setLoading] = useState(false);
 
-    const auth = useSelector((s) => s.login.role);
+    const auth = useSelector((s) => s.login.tipe);
 
     const nameRef = useRef();
     const emailRef = useRef();

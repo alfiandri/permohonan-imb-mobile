@@ -34,11 +34,11 @@ export default () => {
           {!err ? (
             <>
               <Image
-                source={require('../../assets/images/Lambang_Kota_Sibolga.png')}
+                source={require('../../assets/images/logo-dpmtsp.png')}
                 style={[_.flex, _.itemsCenter]}
               />
                <Text color="white" size={30} weight="bold">
-                Melapor!
+                Permohonan IMB!
               </Text>
             </>
           ) : (
