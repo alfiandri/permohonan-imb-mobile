@@ -21,6 +21,9 @@ let SCREEN = {
     Register: {
       path: require(`${path}Auth/Register`),
     },
+    ForgotPassword: {
+      path: require(`${path}Auth/ForgotPassword`),
+    },
   },
   SplashScreen: {
     SplashScreen: {
@@ -113,6 +116,9 @@ const TabNavigator = () => {
       Register: {
         path: require(`${path}Auth/Register`),
       },
+      ForgotPassword: {
+        path: require(`${path}Auth/ForgotPassword`),
+      },
     },
     SplashScreen: {
       SplashScreen: {
@@ -181,6 +187,9 @@ const TabNavigator = () => {
         Register: {
           path: require(`${path}Auth/Register`),
         },
+        ForgotPassword: {
+          path: require(`${path}Auth/ForgotPassword`),
+        },
       },
       SplashScreen: {
         SplashScreen: {
@@ -248,6 +257,9 @@ const TabNavigator = () => {
         },
         Register: {
           path: require(`${path}Auth/Register`),
+        },
+        ForgotPassword: {
+          path: require(`${path}Auth/ForgotPassword`),
         },
       },
       SplashScreen: {
@@ -324,6 +336,9 @@ const TabNavigator = () => {
         },
         Register: {
           path: require(`${path}Auth/Register`),
+        },
+        ForgotPassword: {
+          path: require(`${path}Auth/ForgotPassword`),
         },
       },
       SplashScreen: {

@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/core';
-import React, { useRef, useState } from 'react';
+import {useNavigation} from '@react-navigation/core';
+import React, {useRef, useState} from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -9,39 +9,30 @@ import {
   ScrollView,
   StatusBar,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
-import { Text } from '../../../global/components';
-import _, { COLORS } from '../../../global/styles';
-import { isEmpty, Toast } from '../../../helper/utils';
-import { LoginInput } from './components';
-import useLogin from './hooks';
+import {Text} from '../../../global/components';
+import _, {COLORS} from '../../../global/styles';
+import {isEmpty, Toast} from '../../../helper/utils';
+import {ForgotPasswordInput} from './components';
+import useRegister from './hooks';
 
 export default () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const [nik, setNik] = useState(null);
   const [errEmail, setErrEmail] = useState('');
   const [errPassword, setErrPassword] = useState('');
+  const [errNik, setErrNik] = useState('');
   const navigation = useNavigation();
 
-  const {loading, login, check} = useLogin();
+  const {loading, forgot} = useRegister();
 
   const userRef = useRef();
   const passRef = useRef();
+  const nikRef = useRef();
 
-  const enable = !isEmpty(email) && !isEmpty(password);
-
-  const openLink = async (apiURL = '') => {
-    try {
-      Linking.openURL(apiURL);
-    } catch (error) {
-      console.log('[openLink] is error ', error);
-      if (isEmpty(error.user_message)) {
-        error.user_message = 'Terjadi kesalahan saat memuat laporan';
-      }
-      Toast('Gagal membuka tautan', 'Terjadi kesalahan saat membuka tautan');
-    }
-  };
+  const enable = !isEmpty(email) && !isEmpty(password) && !isEmpty(nik);
 
   const goToScreen = navigate => {
     try {
@@ -74,15 +65,15 @@ export default () => {
 
           <View style={[_.selfCenter, _.itemsCenter, _.mt_3]}>
             <Text size={22} weight="medium" style={_.mb_1}>
-              Selamat Datang
+              Lupa Password
             </Text>
             <Text size={12} weight="reguler" color="greyDark">
-              Masuk terlebih untuk melanjutkan!
+              Silakan reset password akun Anda
             </Text>
           </View>
 
           <View style={[_.mh_2, _.mt_4]}>
-            <LoginInput
+            <ForgotPasswordInput
               ref={userRef}
               label="E-mail"
               value={email}
@@ -92,17 +83,21 @@ export default () => {
               placeholder="Masukkan alamat e-mail Anda"
               returnKeyType="next"
               style={_.mb_2}
-              onEndEditing={() => {
-                const err = check({a: email});
-                if (!err) {
-                  passRef.current?.focus();
-                } else {
-                  setErrEmail(err);
-                }
-              }}
             />
 
-            <LoginInput
+            <ForgotPasswordInput
+              ref={nikRef}
+              label="NIK"
+              value={nik}
+              setValue={setNik}
+              onChange={() => setErrNik('')}
+              errMessage={errNik}
+              placeholder="Masukkan NIK Anda"
+              returnKeyType="next"
+              style={_.mb_2}
+            />
+
+            <ForgotPasswordInput
               ref={passRef}
               label="Password"
               value={password}
@@ -112,17 +107,11 @@ export default () => {
               placeholder="*****"
               password
               style={_.mb_5}
-              onEndEditing={() => {
-                const err = check({a: password, isPassword: true});
-                if (err) {
-                  setErrPassword(err);
-                }
-              }}
             />
 
             <TouchableOpacity
               disabled={loading}
-              onPress={() => login({email, password})}
+              onPress={() => forgot({email, nik, password})}
               style={[
                 _.height(50),
                 _.bgColor(enable && !loading ? 'primaryDark' : 'primary'),
@@ -141,19 +130,14 @@ export default () => {
                   align="center"
                   weight="medium"
                   color={COLORS.white}>
-                  Login
+                  Reset Password
                 </Text>
               )}
             </TouchableOpacity>
           </View>
           <View style={[_.selfCenter, _.itemsCenter, _.mt_1]}>
-            <TouchableOpacity onPress={() => goToScreen('Register')}>
-              <Text weight="medium">Belum punya akun? Silakan mendaftar</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={[_.selfCenter, _.itemsCenter, _.mt_1]}>
-            <TouchableOpacity onPress={() => goToScreen('ForgotPassword')}>
-              <Text weight="medium">Lupa password?</Text>
+            <TouchableOpacity onPress={() => goToScreen('Login')}>
+              <Text weight="medium">Sudah memiliki akun? Silakan masuk</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
